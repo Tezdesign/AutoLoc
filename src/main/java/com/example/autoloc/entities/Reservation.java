@@ -1,0 +1,25 @@
+package com.example.autoloc.entities;
+
+import com.example.autoloc.entities.enums.StatutReservation;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Getter
+@Setter
+public class Reservation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long idReservation;
+    LocalDate dateDebut;
+    LocalDate dateFin;
+    @Enumerated(EnumType.STRING)
+    StatutReservation statut;
+}
