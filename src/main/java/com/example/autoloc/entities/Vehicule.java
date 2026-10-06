@@ -1,6 +1,5 @@
 package com.example.autoloc.entities;
 import com.example.autoloc.entities.enums.CategorieVehicule;
-import com.example.autoloc.entities.enums.RoleEmployee;
 import com.example.autoloc.entities.enums.StatutVehicule;
 
 import jakarta.persistence.*;
@@ -11,6 +10,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +29,17 @@ public class Vehicule {
     BigDecimal tarifJournalier;
     @Enumerated(EnumType.STRING)
     StatutVehicule statut;
+
+    @Enumerated(EnumType.STRING)
     CategorieVehicule categorie;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
+
+    @ManyToMany
+    @JoinTable(name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id"))
+    private List<Equipement> equipements = new ArrayList<>();
 }

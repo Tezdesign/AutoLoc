@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.management.relation.Role;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,5 +19,6 @@ public class Agence {
     String nom;
     String ville;
     String adresse;
+    String telephone;
 
 }

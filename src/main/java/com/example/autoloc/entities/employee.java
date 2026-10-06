@@ -20,4 +20,8 @@ public class employee {
     String prenom;
     @Enumerated(EnumType.STRING)
     RoleEmployee role;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
 }
