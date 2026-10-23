@@ -2,6 +2,7 @@ package com.example.autoloc.entities;
 import com.example.autoloc.entities.enums.CategorieVehicule;
 import com.example.autoloc.entities.enums.StatutVehicule;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -33,7 +35,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     CategorieVehicule categorie;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "agence_id")
     private Agence agence;
 
@@ -42,4 +44,5 @@ public class Vehicule {
             joinColumns = @JoinColumn(name = "vehicule_id"),
             inverseJoinColumns = @JoinColumn(name = "equipement_id"))
     private List<Equipement> equipements = new ArrayList<>();
+    
 }
